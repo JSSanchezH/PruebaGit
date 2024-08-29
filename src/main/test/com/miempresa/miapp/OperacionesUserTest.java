@@ -18,55 +18,55 @@ import main.java.com.miempresa.miapp.OperacionesUser;
 import main.java.com.miempresa.miapp.User;
 
 class OperacionesUserTest {
-	
+
+	// Metodo para testear la lista de usuarios
 	@DisplayName("Probando OperacionesUserTest con datos mock")
 	@Test
 	void testGetUsuarios() {
 		List<User> conocidos = new ArrayList<User>();
 		conocidos.add(new User("Pepe", "Perez", "7622623", 24));
 		conocidos.add(new User("Maria", "González", "34535", 21));
-		
+
 		DatabaseUser repoMock = Mockito.mock(DatabaseUser.class);
 		OperacionesUser ope = new OperacionesUser(repoMock);
-		
+
 		when(repoMock.getUsuarios()).thenReturn(conocidos);
 		List<User> listaUsuarios = ope.getUsuarios();
 		assertNotNull(listaUsuarios);
 		assertEquals(listaUsuarios, conocidos);
 	}
-	
+
 	@DisplayName("Probando hallar un usuario por id con datos mock")
 	@Test
 	void testGetUsuariosPorIdEncontrado() {
 
 		Optional<User> conocidos = Optional.of(new User("Pepe", "Perez", "7622623", 24));
-		
+
 		DatabaseUser repoMock = Mockito.mock(DatabaseUser.class);
 		OperacionesUser ope = new OperacionesUser(repoMock);
-		
+
 		when(repoMock.getUsuariosPorId("7622623")).thenReturn(conocidos);
 		Optional<User> listaUsuarios = ope.getUsuariosPorId("7622623");
 		assertNotNull(listaUsuarios);
 		assertEquals(listaUsuarios, conocidos);
 	}
-	
+
 	@DisplayName("Probando usuario no encontrado por id con datos mock")
 	@Test
 	void testGetUsuariosPorIdNoEncontrado() {
 
 		Optional<User> conocidos = Optional.empty();
-		
+
 		DatabaseUser repo = Mockito.mock(DatabaseUser.class);
 		OperacionesUser ope = new OperacionesUser(repo);
-		
+
 		when(repo.getUsuariosPorId("7622623")).thenReturn(conocidos);
 		Optional<User> listaUsuarios = ope.getUsuariosPorId("7622623");
 		assertNotNull(listaUsuarios);
 		assertEquals(listaUsuarios, conocidos);
 		Mockito.verify(repo).getUsuariosPorId("7622623");
 	}
-	
-	
+
 	@DisplayName("Probando excepción cuando se busca un usuario por id")
 	@Test
 	void testGetUsuariosPorIdExcepcion() {
@@ -76,11 +76,5 @@ class OperacionesUserTest {
 			ope.getUsuariosPorId("");
 		}, "Bebería lanzarse IllegalArgumentException");
 	}
-	
+
 }
-
-
-
-
-
-
