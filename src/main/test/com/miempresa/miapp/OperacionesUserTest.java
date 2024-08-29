@@ -66,7 +66,9 @@ class OperacionesUserTest {
 		assertEquals(listaUsuarios, conocidos);
 		Mockito.verify(repo).getUsuariosPorId("7622623");
 	}
-
+	
+	
+	//Metodo para probar la excepcion de buscar usuario por id
 	@DisplayName("Probando excepción cuando se busca un usuario por id")
 	@Test
 	void testGetUsuariosPorIdExcepcion() {
