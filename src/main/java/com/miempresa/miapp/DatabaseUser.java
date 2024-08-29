@@ -18,6 +18,7 @@ List<User> users;
 		return this.users;
 	}
 	
+	//Este metodo obtiene a los usuarios por ID
 	@Override
 	public Optional<User> getUsuariosPorId(String identificacion) {
 	
@@ -25,4 +26,6 @@ List<User> users;
 				user -> user.identificacion().equals(identificacion))
 				.findFirst();
 	}
+	
+	
 }
