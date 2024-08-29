@@ -77,4 +77,14 @@ class OperacionesUserTest {
 		}, "Bebería lanzarse IllegalArgumentException");
 	}
 
+	@DisplayName("Probando excepción cuando se busca un usuario por id")
+	@Test
+	void testGetUsuariosPorIdExcepcion2() {
+		DatabaseUser repo = Mockito.mock(DatabaseUser.class);
+		OperacionesUser ope = new OperacionesUser(repo);
+		assertThrows(IllegalArgumentException.class, () -> {
+			ope.getUsuariosPorId("");
+		}, "Bebería lanzarse IllegalArgumentException");
+	}
+
 }
